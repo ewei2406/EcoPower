@@ -48,12 +48,6 @@ const Wrapper = styled.div`
 const SearchBar = ({ onSearch }: { onSearch: React.Dispatch<any> }) => {
     const [search, setSearch] = useState("")
 
-    const handleSearch = () => {
-        console.log("Trying to search")
-        SearchService.query(search)
-            .then(res => console.log(res))
-    }
-
     return (
         <Wrapper>
             <SearchWrapper 

@@ -9,13 +9,24 @@ const query = (searchString: string): Promise<ItemType[]> => {
 
     const config = {
         params: {
-            'query': searchString
+            'searchTerm': searchString
         }
     }
 
+    function compare(a: ItemType, b: ItemType) {
+        if (a.score < b.score) {
+            return 1;
+        }
+        if (a.score > b.score) {
+            return -1;
+        }
+        return 0;
+    }
+
+
     return axios
         .get('/search', config)
-        .then(data => data.data)
+        .then(data => data.data.sort(compare))
 }
 
 const SearchService = { query }

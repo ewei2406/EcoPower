@@ -12,7 +12,7 @@ const Wrapper = styled.div`
     position: relative;
     overflow: hidden;
     padding-left: 200px;
-    height: 200px;
+    height: 170px;
     background-color: ${p => p.theme.invertedColor};
 `
 

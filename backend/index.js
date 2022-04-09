@@ -24,7 +24,9 @@ function storeData() {
         "Goddess Garden Organics: Daily SPF 30 Mineral Sunscreen Lotion",
         "Stasher: Stand-Up Mini Bag",
         "Lunchskins: Snack Bag",
-        "Organic Basics: Circular Denim-Chino"
+        "Organic Basics: Circular Denim-Chino",
+        "Able: The Lina High Rise",
+        "DL1961: Patti Straight: High Rise Vintage"
     ];
     var scores = [
         95,
@@ -35,6 +37,8 @@ function storeData() {
         90,
         93,
         80,
+        80,
+        90
     ]
     var prices = [
         1250,
@@ -80,7 +84,7 @@ function storeData() {
         "https://www.boldenusa.com/products/spf-30-brightening-moisturizer",
         "https://www.kinlo.com/product/golden-rays-sunscreen-spf-50/?gclid=CjwKCAjw3cSSBhBGEiwAVII0Z8kCQFQH4bUr9ruzHN7xRfs-Y55J_rA3UB_DKxwFzN_Lmr6PYXYztxoCPy4QAvD_BwEhttps://www.kinlo.com/product/golden-rays-sunscreen-spf-50/?gclid=CjwKCAjw3cSSBhBGEiwAVII0Z8kCQFQH4bUr9ruzHN7xRfs-Y55J_rA3UB_DKxwFzN_Lmr6PYXYztxoCPy4QAvD_BwE",
         "https://www.goddessgarden.com/product/daily-spf-50-mineral-sunscreen-lotion-6-oz/",
-        "stasherbag.com/products/reusable-silicone-stand-up-mini-bag",
+        "https://www.stasherbag.com/products/reusable-silicone-stand-up-mini-bag",
         "https://www.lunchskins.com/collections/snack-bags/products/reusable-zip-snack-bag-navy-dot",
         "https://us.organicbasics.com/products/womens-circular-denim-chino?variant=32228480057455#modal-full",
         "https://www.ableclothing.com/collections/denim/products/the-lina-high-rise-1",
@@ -102,7 +106,7 @@ function storeData() {
 } 
 
 app.get('/search', (req, res) => {
-    var search_res = req.query.query.toUpperCase();
+    var search_res = req.query.searchTerm.toUpperCase();
     console.log(search_res)
     const found = products.filter(obj => 
         obj.name.toUpperCase().includes(search_res) || 
