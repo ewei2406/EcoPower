@@ -33,8 +33,7 @@ const App = () => {
     useEffect(() => {
         SearchService.query("soap")
             .then(res => {
-                console.log(res)
-                setItemResults(res.data || [])
+                setItemResults(res || [])
             })
     }, [])
 

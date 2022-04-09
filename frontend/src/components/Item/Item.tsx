@@ -28,7 +28,7 @@ const ImgWrapper = styled.div(({ imgUrl }: { imgUrl: string }) => `
 
 const ContentWrapper = styled.div`
     margin: 20px;
-    width: 400px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -37,12 +37,15 @@ const ContentWrapper = styled.div`
 `
 
 const Heading = styled.div`
+    width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
     font-family: ${p => p.theme.headingFont};
     font-weight: 800;
-    font-size: 1.5em;
+    font-size: 1.25em;
 `
 
-const Price = styled(Heading)`
+const Price = styled.div`
     position: absolute;
     top: 0;
     right: 0;
@@ -66,7 +69,7 @@ const Item = ({ item }: { item: ItemType }) => {
     return (
         <Wrapper>
             <FallbackIcon/>
-            <ImgWrapper imgUrl={item.imageUrl}></ImgWrapper>
+            <ImgWrapper imgUrl={item.imageLink}></ImgWrapper>
             <ContentWrapper>
                 <Heading>
                     {item.name}

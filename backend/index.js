@@ -73,7 +73,8 @@ function storeData() {
 } 
 
 app.get('/search', (req, res) => {
-    var search_res = req.params.query;
+
+    var search_res = req.query.query;
     products.filter(obj => {
         return obj.product_assoc == search_res;
     })

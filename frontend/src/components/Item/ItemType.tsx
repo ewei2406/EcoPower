@@ -1,6 +1,6 @@
 type ItemType = {
     name: string
-    imageUrl: string
+    imageLink: string
     description: string
     // location: string
     score: number
