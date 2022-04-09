@@ -32,14 +32,24 @@ function storeData() {
         93
     ]
     var prices = [
-        12.50,
-        8.25,
-        28.00,
-        19.99,
-        5.99,
-        17.99,
-        5.99,
+        1250,
+        825,
+        2800,
+        1999,
+        599,
+        1799,
+        599,
     ]
+    var descriptions = [
+        "1250",
+        "825",
+        "2800",
+        "1999",
+        "599",
+        "1799",
+        "599",
+    ]
+
     var imageLinks = [
         "https://www.lushusa.com/dw/image/v2/BDMQ_PRD/on/demandware.static/-/Sites-lushcosmetics-export/default/dw172edf6f/images/product/02259.jpg?sw=450&sh=450",
         "https://cdn.shopify.com/s/files/1/0065/5769/6088/products/FO_soap_4pack_2_380dbdea-dfc9-4f3d-93c1-08f54577db40_900x.jpg?v=1613478250",
@@ -62,6 +72,7 @@ function storeData() {
     for(var i = 0; i < product_assoc.length; i++) {
         products.push({
             product_assoc: product_assoc[i],
+            description: descriptions[i],
             name: names[i],
             score: scores[i],
             price: prices[i],
@@ -73,12 +84,14 @@ function storeData() {
 } 
 
 app.get('/search', (req, res) => {
-
-    var search_res = req.query.query;
-    products.filter(obj => {
-        return obj.product_assoc == search_res;
-    })
-    res.json(products)
+    var search_res = req.query.query.toUpperCase();
+    console.log(search_res)
+    const found = products.filter(obj => 
+        obj.name.toUpperCase().includes(search_res) || 
+        obj.description.toUpperCase().includes(search_res) ||
+        obj.product_assoc.toUpperCase().includes(search_res))
+    console.log(found)
+    res.json(found)
 })
 
 
