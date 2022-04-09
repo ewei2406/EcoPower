@@ -28,7 +28,7 @@ function storeData() {
         77,
         70,
         97,
-        89,
+        90,
         93
     ]
     var prices = [
