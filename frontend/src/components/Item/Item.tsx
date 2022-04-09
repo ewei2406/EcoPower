@@ -12,6 +12,7 @@ const Wrapper = styled.div`
     position: relative;
     overflow: hidden;
     padding-left: 200px;
+    height: 200px;
 `
 
 const ImgWrapper = styled.div(({ imgUrl }: { imgUrl: string }) => `

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "./components/Button/Button";
 import "./App.css"
 import SearchBar from "./components/SearchBar/SearchBar";
@@ -8,6 +8,7 @@ import Title from "./components/Title/Title";
 import ItemType from "./components/Item/ItemType";
 import fakeItems from "./FakeItems";
 import ItemList from "./components/Item/ItemList";
+import SearchService from "./Services/SearchService";
 
 const baseTheme = {
     complementColor: "#777",
@@ -28,6 +29,14 @@ const Page = styled.div`
 const App = () => {
 
     const [itemResults, setItemResults] = useState(fakeItems)
+
+    useEffect(() => {
+        SearchService.query("soap")
+            .then(res => {
+                console.log(res)
+                setItemResults(res.data || [])
+            })
+    }, [])
 
     return(
         <ThemeProvider theme={baseTheme}>

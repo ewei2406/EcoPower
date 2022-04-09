@@ -15,7 +15,7 @@ function storeData() {
     ]
     var names = [
         "Lush: Goddess Bar Soap", 
-        "Fifth Origins:’ Dream Pack", 
+        "Fifth Origins: Dream Pack", 
         "Bolden USA: SPF 30 Brightening Moisturizer",
         "Kinlo: Golden Rays Golden Rays Sunscreen SPF 50+ Melanated Tint",
         "Goddess Garden Organics: Daily SPF 30 Mineral Sunscreen Lotion",
@@ -56,7 +56,7 @@ app.get('/search', (req, res) => {
     products.filter(obj => {
         return obj.product_assoc == search_res;
     })
-    res.json(JSON.stringify(products))
+    res.json(products)
 })
 
 
