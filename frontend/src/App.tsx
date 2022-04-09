@@ -10,6 +10,7 @@ import fakeItems from "./FakeItems";
 import ItemList from "./components/Item/ItemList";
 import SearchService from "./Services/SearchService";
 import Footer from "./components/Footer";
+import Navbar from "./components/Navbar/Navbar";
 
 const baseTheme = {
     complementColor: "#999",
@@ -51,6 +52,7 @@ const App = () => {
                 <SearchBar onSearch={handleSearch}/>
                 <ItemList items={itemResults}/>
                 <Footer/>
+                <Navbar />
             </Page>
         </ThemeProvider>
     )
