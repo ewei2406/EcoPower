@@ -1,13 +1,70 @@
 import React, { useState } from "react";
 import styled from "styled-components"
-import { RoundedInput } from "../Styles/RoundedRect";
+import { AiOutlineSearch } from "react-icons/ai"
+import SearchService from "../../Services/SearchService";
 
+const SearchWrapper = styled.input`
+    width: 400px;
+    border: none;
+    padding: 20px;
+    font-size: inherit;
+    background-color: transparent;
+    color: inherit;
+    font-family: inherit;
+
+    &:focus {
+        outline: none;
+    }
+
+    &::placeholder {
+        color: inherit;
+    }
+`
+
+const Wrapper = styled.div`
+    color: ${p => p.theme.invertedColor};
+    background-color: ${p => p.theme.accentColor};
+    font-family: ${p => p.theme.headingFont};
+    font-size: 1em;
+    border-radius: 2em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding-right: 20px;
+    overflow: hidden;
+
+    filter: drop-shadow(0 4px 8px #aaa);
+    transition: 0.1s ease all;
+
+    &:hover {
+        transform: scale(1.04);
+    }
+
+    &:focus-within {
+        transform: scale(1.04);
+    }
+`
 
 const SearchBar = () => {
     const [search, setSearch] = useState("")
 
+    const handleSearch = () => {
+        console.log("Trying to search")
+        SearchService.query(search)
+            .then(res => console.log(res))
+    }
+
     return (
-        <RoundedInput type="text" value={search} onChange={e => setSearch(e.target.value)}/>
+        <Wrapper>
+            <SearchWrapper 
+                placeholder="Enter a search term"
+                type="text" 
+                value={search} 
+                onChange={e => setSearch(e.target.value)} 
+                onKeyDown={e => {if (e.key === "Enter") handleSearch()}}
+                />
+            <AiOutlineSearch/>
+        </Wrapper>
     )
 }
 
