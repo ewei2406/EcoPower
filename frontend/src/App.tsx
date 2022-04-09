@@ -9,10 +9,11 @@ import ItemType from "./components/Item/ItemType";
 import fakeItems from "./FakeItems";
 import ItemList from "./components/Item/ItemList";
 import SearchService from "./Services/SearchService";
+import Footer from "./components/Footer";
 
 const baseTheme = {
-    complementColor: "#777",
-    accentColor: "#027FFF",
+    complementColor: "#999",
+    accentColor: "#A766F5",
     invertedColor: "#fff",
     bodyFont: "'Roboto', sans-serif",
     headingFont: "'Montserrat', sans-serif"
@@ -22,27 +23,34 @@ const Page = styled.div`
     display: flex;
     font-family: ${p => p.theme.bodyFont};
     flex-direction: column;
-    gap: 50px;
+    gap: 40px;
+    padding: 25px;
     align-items: center;
 `
 
 const App = () => {
 
-    const [itemResults, setItemResults] = useState(fakeItems)
+    const empty: ItemType[] = []
+    const [itemResults, setItemResults] = useState(empty)
 
     useEffect(() => {
-        SearchService.query("soap")
+        
+    }, [])
+
+    const handleSearch = (q: string) => {
+        SearchService.query(q)
             .then(res => {
                 setItemResults(res || [])
             })
-    }, [])
+    }
 
     return(
         <ThemeProvider theme={baseTheme}>
             <Page>
-                <Title title="TITLE"/>
-                <SearchBar/>
+                <Title title="EcoPower"/>
+                <SearchBar onSearch={handleSearch}/>
                 <ItemList items={itemResults}/>
+                <Footer/>
             </Page>
         </ThemeProvider>
     )

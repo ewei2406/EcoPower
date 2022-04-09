@@ -22,8 +22,8 @@ const SearchWrapper = styled.input`
 `
 
 const Wrapper = styled.div`
-    color: ${p => p.theme.invertedColor};
-    background-color: ${p => p.theme.accentColor};
+    color: ${p => p.theme.accentColor};
+    background-color: ${p => p.theme.invertedColor};
     font-family: ${p => p.theme.headingFont};
     font-size: 1em;
     border-radius: 2em;
@@ -45,7 +45,7 @@ const Wrapper = styled.div`
     }
 `
 
-const SearchBar = () => {
+const SearchBar = ({ onSearch }: { onSearch: React.Dispatch<any> }) => {
     const [search, setSearch] = useState("")
 
     const handleSearch = () => {
@@ -61,7 +61,7 @@ const SearchBar = () => {
                 type="text" 
                 value={search} 
                 onChange={e => setSearch(e.target.value)} 
-                onKeyDown={e => {if (e.key === "Enter") handleSearch()}}
+                onKeyDown={e => {if (e.key === "Enter") onSearch(search)}}
                 />
             <AiOutlineSearch/>
         </Wrapper>

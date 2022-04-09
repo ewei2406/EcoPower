@@ -9,10 +9,16 @@ const Wrapper = styled.div`
     gap: 10px;
 `
 
+const InfoDiv = styled.div``
+
 const ItemList = ({ items }: {items: ItemType[]}) => {
     return (
         <Wrapper>
             {items.map(i => <Item item={i} key={i.name}/>)}
+
+            {items.length === 0 && <InfoDiv>
+                Search
+                </InfoDiv>}
         </Wrapper>
     )
 }

@@ -1,6 +1,11 @@
 import axios from "axios"
+import ItemType from "../components/Item/ItemType"
 
-const query = (searchString: string) => {
+const query = (searchString: string): Promise<ItemType[]> => {
+
+    if (searchString === "") return new Promise((resolve, reject) => {
+        resolve([])
+    })
 
     const config = {
         params: {

@@ -13,6 +13,7 @@ const Wrapper = styled.div`
     overflow: hidden;
     padding-left: 200px;
     height: 200px;
+    background-color: ${p => p.theme.invertedColor};
 `
 
 const ImgWrapper = styled.div(({ imgUrl }: { imgUrl: string }) => `
@@ -27,13 +28,15 @@ const ImgWrapper = styled.div(({ imgUrl }: { imgUrl: string }) => `
 `)
 
 const ContentWrapper = styled.div`
-    margin: 20px;
+    padding: 20px;
     width: 500px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 20px;
     position: relative;
     align-items: flex-start;
+    height: 100%;
 `
 
 const Heading = styled.div`
@@ -47,8 +50,8 @@ const Heading = styled.div`
 
 const Price = styled.div`
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 20px;
+    right: 20px;
     font-weight: 400;
     color: ${p => p.theme.complementColor};
     text-align: right;
@@ -65,6 +68,19 @@ const FallbackIcon = styled(TiImage)`
     color: ${p => p.theme.complementColor};
 `
 
+const ButtonWrapper = styled.div`
+    position: absolute;
+    bottom: 20px;
+`
+
+const DescWrapper = styled.div`
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+`
+
 const Item = ({ item }: { item: ItemType }) => {
     return (
         <Wrapper>
@@ -78,10 +94,12 @@ const Item = ({ item }: { item: ItemType }) => {
                     <Scale score={item.score} />
                     ${item.price / 100}
                 </Price>
-                {item.description}
-                <Button onClick={() => window.open(item.link, '_blank')} content={
-                    <>Learn more <FiLink /></>
-                }/>
+                <DescWrapper>{item.description}</DescWrapper>
+                <ButtonWrapper>
+                    <Button onClick={() => window.open(item.link, '_blank')} content={
+                        <>Learn more <FiLink /></>
+                    }/>
+                </ButtonWrapper>
             </ContentWrapper>
         </Wrapper>
     )
